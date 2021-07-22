@@ -6,7 +6,7 @@ pygame.init()
 screen = pygame.display.set_mode((600, 400))
 background = pygame.image.load('files/background.jpg')
 
-pygame.display.set_caption('files/ninja')
+pygame.display.set_caption('ninja')
 icon = pygame.image.load('files/ninja.png')
 pygame.display.set_icon(icon)
 
@@ -83,8 +83,8 @@ while running:
 				playerX_change = 0.4
 			elif event.key == pygame.K_UP:
 				if weapon_state is True:
-					#throw_sfx = pygame.mixer.Sound('files/throw.wav')
-					#throw_sfx.play()
+					throw_sfx = pygame.mixer.Sound('files/throwv2.wav')
+					throw_sfx.play()
 					weaponX =  playerX
 					atk(weaponX,weaponY)
 
@@ -109,7 +109,7 @@ while running:
 
 		collision = isCollision(samuraiX[i], samuraiY[i], weaponX, weaponY)
 		if collision:
-			hit_sfx = pygame.mixer.Sound('files/hit.wav')
+			hit_sfx = pygame.mixer.Sound('files/hitv2.wav')
 			hit_sfx.play()
 			weaponY = 400
 			weapon_state = True
