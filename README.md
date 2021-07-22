@@ -13,3 +13,5 @@ install it with `apt install python3-pip`
 install it with `apt install python3`
 
 run it with root if necessary.
+
+!()[https://raw.githubusercontent.com/abalesluke/ninja/main/image.png]
