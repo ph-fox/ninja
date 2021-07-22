@@ -35,7 +35,14 @@ for i in range(samurai_count):
 	samuraiX_change.append(0.1)
 	samuraiY_change.append(20)
 
-score = 0
+kill_count = 0
+kill_text = pygame.font.Font('freesansbold.ttf',32)
+kill_textX = 10
+kill_textY = 10
+
+def kill_display(x, y):
+	kills = kill_text.render(f"Kills: {kill_count}",True, (255, 255 ,255))
+	screen.blit(kills, (x,y))
 
 def player(x,y):
 	screen.blit(playerImg, (x,y))
@@ -90,8 +97,7 @@ while running:
 		if collision:
 			weaponY = 400
 			weapon_state = True
-			score+=1
-			print(score)
+			kill_count+=1
 			samuraiX[i] = random.randint(0,539)
 			samuraiY[i] = random.randint(50, 150)
 
@@ -110,6 +116,6 @@ while running:
 		atk(weaponX, weaponY)
 		weaponY -= weaponY_change
 
-
+	kill_display(kill_textX,kill_textY)
 	player(playerX, playerY)
 	pygame.display.update()
