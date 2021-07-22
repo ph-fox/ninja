@@ -1,4 +1,5 @@
 # ninja
+[🟢 STATUS] Still On Development..
 My first ninja shooting game created with python3 pygame 
 
 run it using this command `python3 ninja.py`
