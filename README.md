@@ -14,4 +14,4 @@ install it with `apt install python3`
 
 run it with root if necessary.
 
-!()[https://raw.githubusercontent.com/abalesluke/ninja/main/image.png]
+!(https://raw.githubusercontent.com/abalesluke/ninja/main/image.png)[]
