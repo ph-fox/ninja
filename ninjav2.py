@@ -4,18 +4,18 @@ from math import sqrt
 pygame.init()
 
 screen = pygame.display.set_mode((600, 400))
-background = pygame.image.load('background.jpg')
+background = pygame.image.load('files/background.jpg')
 
-pygame.display.set_caption('ninja')
-icon = pygame.image.load('ninja.png')
+pygame.display.set_caption('files/ninja')
+icon = pygame.image.load('files/ninja.png')
 pygame.display.set_icon(icon)
 
-playerImg = pygame.image.load('ninja.png')
+playerImg = pygame.image.load('files/ninja.png')
 playerX = 295
 playerY = 340
 playerX_change = 0
 
-weaponImg = pygame.image.load('kunai.png')
+weaponImg = pygame.image.load('files/kunai.png')
 weaponX = 0
 weaponY = 400
 weaponX_change = 0.1
@@ -29,7 +29,7 @@ samuraiX_change = []
 samuraiY_change = []
 samurai_count = 3
 for i in range(samurai_count):
-	samuraiImg.append(pygame.image.load('samurai.png'))
+	samuraiImg.append(pygame.image.load('files/samurai.png'))
 	samuraiX.append(random.randint(0,539))
 	samuraiY.append(random.randint(50, 150))
 	samuraiX_change.append(0.1)
@@ -39,6 +39,12 @@ kill_count = 0
 kill_text = pygame.font.Font('freesansbold.ttf',32)
 kill_textX = 10
 kill_textY = 10
+
+you_die = pygame.font.Font('freesansbold.ttf',64)
+
+def death_msg():
+	dm = you_die.render("You Died! ",True, (255,0 ,0))
+	screen.blit(dm, (150,200))
 
 def kill_display(x, y):
 	kills = kill_text.render(f"Kills: {kill_count}",True, (255, 255 ,255))
@@ -77,6 +83,8 @@ while running:
 				playerX_change = 0.4
 			elif event.key == pygame.K_UP:
 				if weapon_state is True:
+					#throw_sfx = pygame.mixer.Sound('files/throw.wav')
+					#throw_sfx.play()
 					weaponX =  playerX
 					atk(weaponX,weaponY)
 
@@ -85,6 +93,12 @@ while running:
 				playerX_change = 0
 
 	for i in range(samurai_count):
+		if samuraiY[i] > 270:
+			for x in range(samurai_count):
+				samuraiY[x] = 2000
+			death_msg()
+			break
+
 		samuraiX[i] += samuraiX_change[i]
 		if samuraiX[i] <= 0:
 			samuraiX_change[i] = 0.2
@@ -95,6 +109,8 @@ while running:
 
 		collision = isCollision(samuraiX[i], samuraiY[i], weaponX, weaponY)
 		if collision:
+			hit_sfx = pygame.mixer.Sound('files/hit.wav')
+			hit_sfx.play()
 			weaponY = 400
 			weapon_state = True
 			kill_count+=1
