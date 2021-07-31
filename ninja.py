@@ -4,7 +4,7 @@ from math import sqrt
 pygame.init()
 
 screen = pygame.display.set_mode((600, 400))
-background = pygame.image.load('files/background.jpg')
+#background = pygame.image.load('files/background.jpg')
 
 pygame.display.set_caption('ninja')
 icon = pygame.image.load('files/ninja.png')
